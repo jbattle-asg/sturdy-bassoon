@@ -1534,7 +1534,9 @@ function stopUsageTracking() {
 
 
 const password = "pasword123";
-const adminPassword = "password89081234"
+const adminPassword = "password89081234";
+
+const url = window.location.href + "?password=" + password + "&adminPassword=" + adminPassword; 
  
 // GLOBALIZE FUNCTIONS
 window.loginUser = loginUser;
