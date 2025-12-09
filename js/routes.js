@@ -1534,7 +1534,7 @@ function stopUsageTracking() {
 
 
 const password = "pasword123";
-const anotherPass = "password1234"
+const adminPassword = "password89081234"
 
 // GLOBALIZE FUNCTIONS
 window.loginUser = loginUser;
