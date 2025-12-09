@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<!-- OPENING PROMPT ASSISTANT -->
+<div id="configurator-prompt" style="font-family: sans-serif; padding: 1.5rem; background: #f9f9f9; border: 1px solid #ddd; border-radius: 12px; max-width: 480px; margin: 2rem auto; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center;">
+  <p style="font-size: 1.1rem; margin-bottom: 1.25rem;">
+    Would you like some assistance with configuring your truck?
+  </p>
+  <div style="display: flex; justify-content: center; gap: 1rem;">
+    <button id="assist-yes" style="padding: 0.6rem 1.2rem; font-size: 1rem; border: none; border-radius: 6px; background-color: #007bff; color: white; cursor: pointer;">
+      Sure
+    </button>
+    <button id="assist-no" style="padding: 0.6rem 1.2rem; font-size: 1rem; border: none; border-radius: 6px; background-color: #e0e0e0; color: #333; cursor: pointer;">
+      No thank you
+    </button>
+  </div>
+</div>
+<!-- /OPENING PROMPT ASSISTANT -->
+
+
+<!-- PRODUCT CONFIGURATOR (HIDDEN) -->
+<div id="product-configurator" style="display: none; padding: 2rem; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); max-width: 800px; margin: 2rem auto;">
+  <!-- Your configurator content goes here -->
+  <h2>Truck Configurator</h2>
+  <p>Start customizing your truck...</p>
+</div>
+<!-- /PRODUCT CONFIGURATOR (HIDDEN) -->
+
+
+<!-- PRODUCT CONFIGURATOR (SHOW)-->
+<div 
+    id="product-configurator" 
+    style="
+    max-width: 500px;
+    margin: 20px auto; 
+    font-family: sans-serif;
+    "
+    >
+</div>
+<!-- /PRODUCT CONFIGURATOR (SHOW)-->
+
+
+<script>
+  const questionsMap = {
+    start: {
+      id: 'category',
+      text: "What are you producing?",
+      options: [
+        { value: 'sports', label: 'Sports', next: 'sports_type' },
+        { value: 'esports', label: 'Esports', next: 'esports_type' },
+        { value: 'music', label: 'Music', next: 'music_type' },
+        { value: 'corporate', label: 'Corporate Event', next: 'corporate_type' },
+      ]
+    },
+    sports_type: {
+      id: 'sportsType',
+      text: "Select a sports format:",
+      options: [
+        { value: 'indoor_court', label: 'Indoor Court (Basketball/Volleyball)', next: 'tech_question_1' },
+        { value: 'outdoor_court', label: 'Outdoor Court (Tennis, Beach Volleyball)', next: 'tech_question_1' },
+        { value: 'spread_field', label: 'Spread Field (Baseball/Cricket)', next: 'tech_question_1' },
+        { value: 'linear_field', label: 'Linear Field (Football/Rugby/Soccer)', next: 'tech_question_1' },
+      ]
+    },
+    esports_type: {
+      id: 'esportsType',
+      text: "Select a game type:",
+      options: [
+        { value: 'moba_tps', label: 'MOBA/TPS (Call of Duty, PUBG)', next: 'tech_question_1' },
+        { value: 'fighter', label: 'Fighter (Super Smash, Tekken)', next: 'tech_question_1' },
+        { value: 'strategy', label: 'Strategy (Chess, Hearthstone)', next: 'tech_question_1' },
+      ]
+    },
+    music_type: {
+      id: 'musicType',
+      text: "Select a music event type:",
+      options: [
+        { value: 'indoor_large', label: 'Indoor Large', next: 'tech_question_1' },
+        { value: 'indoor_small', label: 'Indoor Small', next: 'tech_question_1' },
+        { value: 'outdoor_large', label: 'Outdoor Large', next: 'tech_question_1' },
+        { value: 'outdoor_small', label: 'Outdoor Small', next: 'tech_question_1' },
+      ]
+    },
+    corporate_type: {
+      id: 'corporateType',
+      text: "Select a corporate event type:",
+      options: [
+        { value: 'keynote', label: 'Keynote Presentation', next: 'tech_question_1' },
+        { value: 'day_event', label: 'Day Event – Keynotes + Panels', next: 'tech_question_1' },
+        { value: 'multi_location', label: 'Multi-Location', next: 'tech_question_1' },
+      ]
+    },
+    tech_question_1: {
+      id: 'tech_question_1',
+      text: "How many Cameras?",
+      input: "number",
+      weight: 1.5,
+      next: "tech_question_2"
+    },
+    tech_question_2: {
+      id: 'tech_question_2',
+      text: "How many separate graphics (IMAGS)?",
+      input: "number",
+      weight: 1,
+      next: "tech_question_3"
+    },
+    tech_question_3: {
+      id: 'tech_question_3',
+      text: "How many separate screens that need to be broadcast, i.e.: telestrator, computer monitor, etc.?",
+      input: "number",
+      weight: 1.3, 
+      next: "tech_question_4"
+    },
+    tech_question_4: {
+      id: 'tech_question_4',
+      text: "How many endpoints?",
+      input: "number",
+      weight: 1.2, 
+      next: "done"
+    },
+  };
+
+  const answers = {};
+  let currentKey = 'start';
+  const container = document.getElementById('product-configurator');
+
+  function showQuestion(key) {
+    const question = questionsMap[key];
+    if (!question) return;
+
+    if (question.input === 'number') {
+      container.innerHTML = `
+    <div style="background: #f9f9f9; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+      <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>${question.text}</strong></p>
+      <form id="step-form">
+        <input 
+          type="number" 
+          name="${question.id}" 
+          required 
+          placeholder="Enter a number"
+          style="margin-bottom: 1rem; width: 100%; padding: 0.75rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 8px;" 
+        />
+        <button 
+          type="submit"
+          style="padding: 0.6rem 1.2rem; font-size: 1rem; background-color: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer;">
+          Next
+        </button>
+      </form>
+    </div>
+`;
+
+    } else {
+      container.innerHTML = `
+  <div style="background: #f9f9f9; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+    <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>${question.text}</strong></p>
+    <form id="step-form">
+      ${question.options.map(opt => `
+        <label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; font-size: 1rem; cursor: pointer;">
+          <input 
+            type="radio" 
+            name="${question.id}" 
+            value="${opt.value}" 
+            required 
+            style="accent-color: #007bff;"
+          />
+          ${opt.label}
+        </label>
+      `).join('')}
+      <button 
+        type="submit"
+        style="margin-top: 1rem; padding: 0.6rem 1.2rem; font-size: 1rem; background-color: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer;">
+        Next
+      </button>
+    </form>
+  </div>
+`;
+    }
+
+    document.getElementById('step-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      let selectedValue = formData.get(question.id);
+      console.log(selectedValue)
+
+      if (question.weight){
+        selectedValue = question.weight * selectedValue
+      }
+
+      answers[question.id] = selectedValue;
+
+      console.log(selectedValue)
+
+      const next = question.next || question.options.find(opt => opt.value === selectedValue)?.next;
+      if (next === 'done') {
+        showRecommendation();
+      } else {
+        currentKey = next;
+        showQuestion(currentKey);
+      }
+    });
+  }
+
+  const recommendations = {
+    small: {truck: "Sprinter", value: 10},
+    medium: {truck: "Medium Truck (36')", value: 20},
+    large: {truck: "Large Truck (53')", value: 30}
+  };
+
+  function showRecommendation() {
+    total = 0
+    for (const [key, value] of Object.entries(answers)) {
+        const num = parseInt(value);
+        if (!isNaN(num)) {
+            total += num;
+        }
+    }
+    
+    let truckSize = "large";
+
+    if (total <= recommendations.small.value) {
+        truckSize = "small";
+    } else if (total <= recommendations.medium.value) {
+        truckSize = "medium";
+    }
+
+    const product = recommendations[truckSize].truck;
+    container.innerHTML = `
+      <div style="background: #e8f0fe; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center;">
+        <p style="font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem;">Recommended Setup:</p>
+        <p style="font-size: 1.5rem; color: #007bff; margin-bottom: 1.5rem;">${product}</p>
+        <button 
+          id="use-config-btn"
+          style="padding: 0.75rem 1.5rem; font-size: 1rem; background-color: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer;">
+          Use Configuration
+        </button>
+      </div>
+    `;
+  }
+  showQuestion(currentKey);
+
+
+  // OPENING ASSISTANT SCRIPTS
+  document.addEventListener('DOMContentLoaded', function () {
+  const prompt = document.getElementById('configurator-prompt');
+  const configurator = document.getElementById('product-configurator');
+  const yesBtn = document.getElementById('assist-yes');
+  const noBtn = document.getElementById('assist-no');
+
+  yesBtn.addEventListener('click', function () {
+    configurator.style.display = 'block';
+    prompt.style.display = 'none';
+  });
+
+  noBtn.addEventListener('click', function () {
+    prompt.style.display = 'none';
+  });
+});
+
+
+</script>
+
+</html>

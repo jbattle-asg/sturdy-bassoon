@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <meta name="description" content="Virtual Truck Event Details">
+    <meta name="author" content="Jermaine Battle">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Virtual Truck™ | Event Details</title>
+
+    	<!-- ACCEPT AWS SCRIPTS -->
+	<meta http-equiv="Content-Security-Policy" content="
+    script-src 'self'
+    https://prod.marketplace.aws.amazon.com
+    https://prod-us-east-1.cdn.chrome.marketplace.aws.dev
+    https://prod.widgets.marketplace.aws.dev
+    https://a0.awsstatic.com
+    https://prod.assets.shortbread.aws.dev
+    'sha256-YHHo93PZUkEq1LaG6rjvjKhFVpBqWMDqpTK1WtvxuP0='
+    'sha256-yGlN2pkA8fJSCmEi+/f0JDcKHSdZU0WH/ZZha55/Yo4='
+    https://a.b.cdn.console.awsstatic.com
+    https://*.console.aws.amazon.com/api/prod/
+    https://us-east-1.signin.aws.amazon.com/oauth
+    https://cdn.tailwindcss.com
+    https://signin.aws.amazon.com/oauth;
+	
+    connect-src 'self' 
+    https://us-east-1.console.aws.amazon.com/api/sessions/ 
+    https://ho0xnj2g3f.execute-api.us-east-1.amazonaws.com 
+    https://oe34fgx6tpoklweepq44k2key40aiedt.lambda-url.us-east-1.on.aws
+    https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css
+    marketplace-cache-x6uwzl.serverless.use1.cache.amazonaws.com;">
+
+
+
+    <!-- STYLES -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;600;800&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+    <link rel="stylesheet" type="text/css" href="css/colors.css" />
+    <link rel="stylesheet" type="text/css" href="css/darkMode.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- SPECIFIC STYLING FOR THIS PAGE -->
+    <style>
+        /* Ensure body stretches to full height */
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Ensure footer stays at bottom */
+        .asg_tm_section {
+            margin-top: auto;
+        }
+
+        /* General Page Styling */
+
+
+        /* Event Info Card */
+        .event-card {
+            max-width: 600px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            text-align: left;
+            margin: 0 auto;
+        }
+
+        .event-card h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #0ca4e4;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .event-card p {
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: #444;
+        }
+
+    </style>
+
+    <!-- VR TRUCK LAUNCH VIDEO -->
+    <style>
+        /* Full-Screen Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+    
+        /* Full-Screen Video */
+        #modalVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures full coverage */
+            z-index: 1001;
+        }
+    
+        /* Close Button */
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 15px;
+            border-radius: 5px;
+            z-index: 1002;
+        }
+    </style>
+</head>
+
+
+<!-- SCRIPTS -->
+<!-- <script>
+    // LOGIN CHECK
+    document.addEventListener("DOMContentLoaded", function () {
+        const authToken = localStorage.getItem("authToken");
+        const userId = localStorage.getItem("userId");
+
+        if (!authToken || authToken === "undefined" || authToken === "null") {
+            console.warn("No valid auth token found, redirecting to login...");
+            window.location.href = "login.html";
+            return;
+        }
+    // /LOGIN CHECK
+
+        // GET EVENT ID & EVENTS
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventId = urlParams.get("event_id");
+
+        if (!eventId) {
+            alert("No event selected. Redirecting to My Events...");
+            window.location.href = "index.html#events";
+        } else {
+            fetchEventDetails(eventId);
+        }
+
+        // fetchUserEvents();
+    });
+
+</script> -->
+<!-- /SCRIPTS -->
+
+<body>
+    <!-- WRAPPER ALL -->
+	<div class="asg_tm_all_wrap" data-magic-cursor="" data-color="crimson">
+    <!-- TOPBAR -->
+    <div class="asg_tm_topbar" style="background-color: black; color: white;">
+        <div class="container" >
+            <div class="topbar_inner">
+                <div class="logo">
+                    <a class="dark asg-logo" href="/index.html"><img src="./images/asg_logo_0224_black.png" alt=""/></a> 
+                    <a class="light asg-logo" href="/index.html"><img src="./images/asg_logo_0224_white.png" alt=""/></a>  
+                </div>
+                <div class="menu">
+                    <ul class="anchor_nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#truck">Truck Layout</a></li>
+                        <!-- <li><a href="#schedule">Schedule Event</a></li> -->
+                        <li><a href="events.html">My Events</a></li>
+                        <li><a href="usage.html">Usage</a></li>
+                        <li><a href="javascript:void(0);" id="logout-link">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /TOPBAR -->
+
+    <!-- MOBILE MENU -->
+	<div class="asg_tm_mobile_menu">
+		<div class="topbar_inner">
+			<div class="container bigger">
+				<div class="topbar_in">
+					<div class="logo">
+                        <a class="dark asg-logo" href="/index.html"><img src="./images/asg_logo_0224_black.png" alt=""/></a> 
+                        <a class="light asg-logo" href="/index.html"><img src="./images/asg_logo_0224_white.png" alt=""/></a>  
+					</div>
+					<div class="my_trigger">
+						<div class="hamburger hamburger--collapse-r">
+							<div class="hamburger-box">
+								<div class="hamburger-inner"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="dropdown">
+			<div class="container">
+				<div class="dropdown_inner">
+					<ul class="anchor_nav">
+						<li class="current"><a href="#home">Home</a></li>
+                        <li><a href="index.html#truck">Truck Layout</a></li>
+                        <!-- <li><a href="#schedule">Schedule Event</a></li> -->
+                        <li><a href="index.html#events">My Events</a></li>
+                        <li><a href="usage.html">Usage</a></li>
+                        <li><a href="javascript:void(0);" id="logout-link">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /MOBILE MENU -->
+
+    <!-- MAIN CONTENT -->
+    <div class="event-details-main-content">
+        <div class="container">
+            <!-- Event Details -->
+            <div class="event-card">
+                <h2>Event Details</h2>
+                <p><strong>Event Name:</strong> <span id="event-name"></span></p>
+                <p><strong>Dates:</strong> <span id="event-dates"></span></p>
+                <!-- <p><strong>End Date:</strong> <span id="event-end"></span></p> -->
+                <p><strong>Additional Info:</strong> <span id="event-message"></span></p>
+                <div class="asg_tm_button" style="float: none; text-align: center;">
+                    <a href="#" class="launch-truck"  data-video="videos\NAB2025_Demo_V3b_screensonly 1.mp4" style="margin-bottom: 10px;">Launch Truck</a>
+                    <a href="#" class="delete-event" style="background-color: red">Delete Event</a>
+                </div>
+
+                <!-- Video Modal -->
+                <div id="videoModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <video id="modalVideo" controls>
+                            <source src="" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selected Products -->
+             <div class="event-details-products-header">
+                <h3 class="event-details-products-title">Selected Products</h3>
+                <button id="event-details-refresh-button" class="event-details-refresh-btn">
+                    <i class="fas fa-sync-alt refresh-icon"></i>
+                </button>
+             </div>
+            
+            <div class="event-products-grid" id="event-products"></div>
+        </div>
+
+        <!-- MY EVENTS -->
+        <div class="asg_tm_section" id="events">
+            <div class="asg_tm_portfolio">
+                <div class="container">
+                    <div class="asg_tm_title_holder" style="margin-bottom: 20px; display: inline-flex;">
+                        <h3 class="home-h3">My <span>Events</span></h3>
+                        <!-- REFRESH EVENTS BUTTON -->
+                        <!-- <button id="events-refresh-button" class="event-details-refresh-btn">
+                            <i class="fas fa-sync-alt refresh-icon"></i>
+                        </button> -->
+                    </div>
+                    <div class="overflow-x-auto">
+
+                        <!----------------- DEMO --------------------->
+						<table id="event-table" class="events-table">
+							<thead>
+								<tr>
+									<th class="py-3 px-4 text-center">Event Name</th>
+									<th class="py-3 px-4 text-center hide-on-mobile">Dates</th>
+									<!-- <th class="py-3 px-4 text-center hide-on-mobile">End Date</th> -->
+                                    <th class="py-3 px-4 text-center hide-on-mobile">Orchestration</th>
+                                    <th class="py-3 px-4 text-center hide-on-mobile">TD Console</th>
+                                    <th class="py-3 px-4 text-center hide-on-mobile">MultiViewer</th>
+                                    <th class="py-3 px-4 text-center hide-on-mobile">Graphics</th>
+                                    <th class="py-3 px-4 text-center hide-on-mobile">VTR Replay</th>
+									<th class="py-3 px-4 text-center hide-on-mobile">Audio</th>
+                                    <th class="py-3 px-4 text-center hide-on-mobile">Comms</th>
+									<th class="py-3 px-4 text-center hide-on-mobile">Processing</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="table-row"></tr>
+								<tr class="details-row"></tr>
+							</tbody>
+						</table>
+                        <!----------------- /DEMO --------------------->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /MY EVENTS -->
+    </div>
+
+    <!-- FOOTER -->
+    <div class="asg_tm_section" style="margin-top: auto">
+        <div class="asg_tm_copyright">
+            <div class="container">
+                <div class="copyright_inner">
+                    <div class="logo wow fadeInLeft">
+                        <img width="200" src="https://asgllc.wpenginepowered.com/wp-content/uploads/asg_logo_white_logotype.svg" alt="" alt="Logo" />
+                    </div>
+                    <div class="copy wow fadeInLeft" data-wow-delay=".4s">
+                        <p>&copy; Copyright 2025 by Advanced Systems Group</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /FOOTER -->
+
+</div>
+<!-- / WRAPPER ALL -->
+
+    <!-- SCRIPTS -->
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/routes.js"></script>
+    <!-- /SCRIPTS -->
+
+</body>
+</html>

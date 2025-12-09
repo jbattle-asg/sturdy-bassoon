@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <title>Register</title>
+
+	<!-- ACCEPT AWS SCRIPTS -->
+	<meta http-equiv="Content-Security-Policy" content="
+    script-src 'self'
+    https://prod.marketplace.aws.amazon.com
+    https://prod-us-east-1.cdn.chrome.marketplace.aws.dev
+    https://prod.widgets.marketplace.aws.dev
+    https://a0.awsstatic.com
+    https://prod.assets.shortbread.aws.dev
+    'sha256-YHHo93PZUkEq1LaG6rjvjKhFVpBqWMDqpTK1WtvxuP0='
+    'sha256-yGlN2pkA8fJSCmEi+/f0JDcKHSdZU0WH/ZZha55/Yo4='
+    https://a.b.cdn.console.awsstatic.com
+    https://*.console.aws.amazon.com/api/prod/
+    https://us-east-1.signin.aws.amazon.com/oauth
+    https://signin.aws.amazon.com/oauth
+    https://cdn.tailwindcss.com
+    marketplace-cache-x6uwzl.serverless.use1.cache.amazonaws.com;
+	
+	connect-src 'self' https://us-east-1.console.aws.amazon.com/api/sessions/ https://ho0xnj2g3f.execute-api.us-east-1.amazonaws.com;">
+
+    <!-- STYLES -->
+	<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="css/plugins.css" />
+	<link rel="stylesheet" type="text/css" href="css/colors.css" />
+	<link rel="stylesheet" type="text/css" href="css/darkMode.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<!-- /STYLES -->
+
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- /SCRIPTS -->
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+    <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">Create an Account</h2>
+
+        <form id="register-form">
+            <div class="mb-4">
+                <label class="block text-gray-600 text-sm mb-2" for="name">Full Name</label>
+                <input id="name" name="name" type="text" placeholder="Enter your full name" required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+        
+            <div class="mb-4">
+                <label class="block text-gray-600 text-sm mb-2" for="email" >Email</label>
+                <input id="email" name="email" type="email" placeholder="Enter your email" required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" autocomplete="username">
+            </div>
+        
+            <div class="mb-4">
+                <label class="block text-gray-600 text-sm mb-2" for="password" >Password</label>
+                <input id="password" name="password" type="password" placeholder="Enter your password" required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" autocomplete="new-password">
+            </div>
+        
+            <div class="mb-4">
+                <label class="block text-gray-600 text-sm mb-2" for="confirm-password">Confirm Password</label>
+                <input id="confirm-password" name="confirm-password" type="password" placeholder="Confirm your password" required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+        
+            <p id="error-message" class="text-red-500 text-sm hidden"></p>
+            <p id="success-message" class="text-green-500 text-sm hidden">Registration successful! Redirecting...</p>
+        
+            <button type="submit"
+                class="w-full mt-4 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg transition-all">
+                Register
+            </button>
+        
+            <p class="text-center mt-4 text-sm text-gray-600">
+                Already have an account? <a href="login.html" class="text-blue-500 hover:underline">Login</a>
+            </p>
+        </form>
+        
+    </div>
+    <!-- SCRIPTS -->
+	<script src="js/routes.js"></script>
+	<!-- /SCRIPTS -->
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <meta name="description" content="Virtual Truck Machine Usage">
+    <meta name="author" content="Jermaine Battle">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Virtual Truck™ | Usage</title>
+
+    <!-- ACCEPT AWS SCRIPTS -->
+	<meta http-equiv="Content-Security-Policy" content="
+    script-src 'self'
+    https://prod.marketplace.aws.amazon.com
+    https://prod-us-east-1.cdn.chrome.marketplace.aws.dev
+    https://prod.widgets.marketplace.aws.dev
+    https://a0.awsstatic.com
+    https://prod.assets.shortbread.aws.dev
+    'sha256-YHHo93PZUkEq1LaG6rjvjKhFVpBqWMDqpTK1WtvxuP0='
+    'sha256-yGlN2pkA8fJSCmEi+/f0JDcKHSdZU0WH/ZZha55/Yo4='
+    https://a.b.cdn.console.awsstatic.com
+    https://*.console.aws.amazon.com/api/prod/
+    https://us-east-1.signin.aws.amazon.com/oauth
+    https://cdn.tailwindcss.com
+    https://signin.aws.amazon.com/oauth
+    marketplace-cache-x6uwzl.serverless.use1.cache.amazonaws.com;
+	
+	connect-src 'self' https://us-east-1.console.aws.amazon.com/api/sessions/ https://ho0xnj2g3f.execute-api.us-east-1.amazonaws.com/;">
+
+
+    <!-- STYLES -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;600;800&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/plugins.css" />
+    <link rel="stylesheet" type="text/css" href="css/colors.css" />
+    <link rel="stylesheet" type="text/css" href="css/darkMode.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Ensure footer stays at bottom */
+        .asg_tm_section {
+            margin-top: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+
+	<!-- WRAPPER ALL -->
+	<div class="asg_tm_all_wrap" data-magic-cursor="" data-color="crimson" style="display: flex; flex-direction: column; min-height: 100vh;">
+    <!-- TOPBAR -->
+        <div class="asg_tm_topbar" style="background-color: black;">
+            <div class="container" >
+                <div class="topbar_inner">
+                    <div class="logo">
+                        <a class="dark asg-logo" href="/index.html"><img src="./images/asg_logo_0224_black.png" alt=""/></a> 
+                        <a class="light asg-logo" href="/index.html"><img src="./images/asg_logo_0224_white.png" alt=""/></a>  
+                    </div>
+                    <div class="menu">
+                        <ul class="anchor_nav">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html#truck">Truck Layout</a></li>
+                            <!-- <li><a href="#schedule">Schedule Event</a></li> -->
+                            <li><a href="events.html">My Events</a></li>
+                            <li><a href="usage.html">Usage</a></li>
+                            <li><a href="javascript:void(0);" id="logout-link">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /TOPBAR -->
+    
+        <!-- MOBILE MENU -->
+        <div class="asg_tm_mobile_menu">
+            <div class="topbar_inner">
+                <div class="container bigger">
+                    <div class="topbar_in">
+                        <div class="logo">
+                            <a class="dark asg-logo" href="/index.html"><img src="./images/asg_logo_0224_black.png" alt="" ></a> 
+                            <a class="light asg-logo" href="/index.html"><img src="./images/asg_logo_0224_white.png" alt=""/></a>  
+                        </div>
+                        <div class="my_trigger">
+                            <div class="hamburger hamburger--collapse-r">
+                                <div class="hamburger-box">
+                                    <div class="hamburger-inner"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <div class="container">
+                    <div class="dropdown_inner">
+                        <ul class="anchor_nav">
+                            <li class="current"><a href="#home">Home</a></li>
+                            <li><a href="index.html#truck">Truck Layout</a></li>
+                            <!-- <li><a href="#schedule">Schedule Event</a></li> -->
+                            <li><a href="events.html">My Events</a></li>
+                            <li><a href="usage.html">Usage</a></li>
+                            <li><a href="javascript:void(0);" id="logout-link">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /MOBILE MENU -->
+
+    <!-- MAIN CONTENT -->
+    <div class="usage-main-content">
+        <div class="stats-table-container">
+            <h2 class="stats-title">Current Machine Usage</h2>
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Device Name</th>
+                        <th>Minutes Used</th>
+                        <th>Egress (MB)</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /MAIN CONTENT -->
+
+    <!-- FOOTER -->
+    <div class="asg_tm_section" style="margin-top: auto">
+        <div class="asg_tm_copyright">
+            <div class="container">
+                <div class="copyright_inner">
+                    <div class="logo wow fadeInLeft">
+                        <img width="200" src="https://asgllc.wpenginepowered.com/wp-content/uploads/asg_logo_white_logotype.svg" alt="" alt="Logo" />
+                    </div>
+                    <div class="copy wow fadeInLeft" data-wow-delay=".4s">
+                        <p>&copy; Copyright 2025 by Advanced Systems Group</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /FOOTER -->
+
+	</div>
+	<!-- / WRAPPER ALL -->
+    <!-- SCRIPTS -->
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/routes.js"></script>
+
+    <script>
+        const password = "password123";
+    </script>
+</body>
+</html>
